@@ -1,0 +1,23 @@
+{
+  "name": "next-level-ui-spec-skill",
+  "displayName": "Next Level UI Spec Skill",
+  "description": "Reusable Spark mobile/web design skill with design specs, rules, and self-check guards for tokenized UI implementation and review.",
+  "version": "0.1.0",
+  "author": "Next Level UI Spec Skill Contributors",
+  "license": "MIT",
+  "repository": "https://github.com/hitsuaoko-creator/next-level-ui-spec-skill",
+  "keywords": [
+    "design-spec",
+    "design-system",
+    "token-enforcement",
+    "mobile-ui",
+    "web-ui",
+    "codex-skill",
+    "claude-skill"
+  ],
+  "platforms": [
+    "codex",
+    "claude"
+  ],
+  "install": "bash install-skill.sh {{platform}}"
+}
