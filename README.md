@@ -5,7 +5,7 @@
 ![Claude](https://img.shields.io/badge/Claude-Supported-7C3AED)
 ![Install](https://img.shields.io/badge/Install-bash-brightgreen)
 
-A reusable AI skill that packages Spark mobile/web design specs, design rules, and self-check guards into an installable bundle.
+A reusable AI skill that packages editable example design specs plus strict design rules and self-check guards into an installable bundle.
 
 It is intended for teams that want strict design-token enforcement for:
 
@@ -13,6 +13,13 @@ It is intended for teams that want strict design-token enforcement for:
 - React/Tailwind/shadcn-style web UI
 - design review and self-check workflows
 - guard-based validation before commit
+
+## Contract
+
+- The bundled design specs are examples and templates.
+- Users can edit the parameters in those spec files.
+- Users can also create their own spec documents derived from the examples.
+- The rules files and self-check guards are the mandatory enforcement layer and should be followed strictly.
 
 ## Structure
 
@@ -60,7 +67,21 @@ NEXT_LEVEL_UI_SPEC_PROJECT_ROOT=/abs/path/to/project \
 bash src/next-level-ui-spec-skill/scripts/run_design_guards.sh both staged
 ```
 
-The target project is expected to use `mobile/` and/or `web/` directories. If the project also contains `design/spark-mobile-design-spec.md` and `design/spark-web-design-spec.md`, the guards will prefer those local specs. Otherwise they fall back to the bundled references in this skill.
+The target project is expected to use `mobile/` and/or `web/` directories.
+
+Spec resolution order:
+
+1. `NEXT_LEVEL_UI_SPEC_MOBILE_SPEC_PATH` / `NEXT_LEVEL_UI_SPEC_WEB_SPEC_PATH`
+2. project-local `design/spark-mobile-design-spec.md` / `design/spark-web-design-spec.md`
+3. the bundled example specs in this skill
+
+That means you can:
+
+- keep the bundled example specs as-is
+- edit the bundled example spec parameters
+- create your own project spec files and point the guards at them
+
+The rules files and guard scripts remain the strict enforcement layer in all cases.
 
 ## Publish To GitHub
 

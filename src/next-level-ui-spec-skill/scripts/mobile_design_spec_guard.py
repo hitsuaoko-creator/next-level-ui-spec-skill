@@ -30,9 +30,13 @@ def detect_project_root() -> Path:
 
 
 PROJECT_ROOT = detect_project_root()
-SPEC_PATH = PROJECT_ROOT / "design" / "spark-mobile-design-spec.md"
-if not SPEC_PATH.is_file():
-    SPEC_PATH = SKILL_ROOT / "references" / "spark-mobile-design-spec.md"
+custom_spec = os.environ.get("NEXT_LEVEL_UI_SPEC_MOBILE_SPEC_PATH")
+if custom_spec:
+    SPEC_PATH = Path(custom_spec).resolve()
+else:
+    SPEC_PATH = PROJECT_ROOT / "design" / "spark-mobile-design-spec.md"
+    if not SPEC_PATH.is_file():
+        SPEC_PATH = SKILL_ROOT / "references" / "spark-mobile-design-spec.md"
 
 SCAN_ROOTS = ("mobile/",)
 UI_EXTENSIONS = {
@@ -279,7 +283,8 @@ def main() -> int:
     if not SPEC_PATH.is_file():
         print("Spark mobile design spec is missing.", file=sys.stderr)
         print(
-            "Expected either design/spark-mobile-design-spec.md in the target project "
+            "Expected NEXT_LEVEL_UI_SPEC_MOBILE_SPEC_PATH, "
+            "design/spark-mobile-design-spec.md in the target project, "
             "or the bundled reference inside the installed skill.",
             file=sys.stderr,
         )

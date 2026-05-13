@@ -1,7 +1,7 @@
 {
   "name": "next-level-ui-spec-skill",
   "displayName": "Next Level UI Spec Skill",
-  "description": "Reusable Spark mobile/web design skill with design specs, rules, and self-check guards for tokenized UI implementation and review.",
+  "description": "Reusable mobile/web UI skill with editable example design specs plus strictly enforced rules and self-check guards for tokenized implementation and review.",
   "version": "0.1.0",
   "author": "Next Level UI Spec Skill Contributors",
   "license": "MIT",

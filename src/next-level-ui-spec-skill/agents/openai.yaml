@@ -1,3 +1,3 @@
 display_name: Next Level UI Spec Skill
-short_description: Enforce Spark mobile and web design specs with bundled rules and guard scripts.
-default_prompt: Use the Next Level UI Spec Skill to implement or review token-compliant mobile or web UI, read the correct Spark spec first, and run the bundled guards after UI edits.
+short_description: Use editable example UI specs with strict rules and guard scripts for mobile and web design enforcement.
+default_prompt: Use the Next Level UI Spec Skill to implement or review token-compliant mobile or web UI, treat the bundled design specs as editable examples, and run the mandatory guard scripts after UI edits.

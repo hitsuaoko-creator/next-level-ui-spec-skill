@@ -1,11 +1,11 @@
 ---
 name: next-level-ui-spec-skill
-description: Use this skill when implementing or reviewing Spark-style mobile or web UI that must follow strict design tokens, design spec, design review rules, and automated self-check guards. Covers mobile Compose token usage, web CSS variable and Tailwind semantic token usage, icon rules, guard-driven validation, and when to stop for missing tokens.
+description: Use this skill when implementing or reviewing mobile or web UI with editable example design specs plus strictly enforced design rules and automated self-check guards. Covers mobile Compose token usage, web CSS variable and Tailwind semantic token usage, icon rules, and guard-driven validation.
 ---
 
 # Next Level UI Spec Skill
 
-This skill packages Spark-style mobile/web design constraints into a reusable, installable skill.
+This skill packages editable example design specs together with strict design rules and self-check guards into a reusable, installable skill.
 
 ## Use This Skill For
 
@@ -31,6 +31,26 @@ For `web/` tasks:
 - `references/spark-web-design-rules.md`
 - `scripts/web_design_spec_guard.py`
 
+## What Is Flexible vs Mandatory
+
+### Flexible: the bundled design specs
+
+- `references/spark-mobile-design-spec.md` and `references/spark-web-design-spec.md` are example specs.
+- Users may edit the parameters inside those spec files.
+- Users may keep those files as-is and create project-specific spec documents derived from them.
+- If a project wants to use custom spec files, the guards can be pointed at them with:
+  - `NEXT_LEVEL_UI_SPEC_MOBILE_SPEC_PATH=/abs/path/to/mobile-spec.md`
+  - `NEXT_LEVEL_UI_SPEC_WEB_SPEC_PATH=/abs/path/to/web-spec.md`
+
+### Mandatory: rules and self-check guards
+
+- `references/spark-mobile-design-rules.md`
+- `references/spark-web-design-rules.md`
+- `scripts/mobile_design_spec_guard.py`
+- `scripts/web_design_spec_guard.py`
+
+These are the strict enforcement layer and should be followed exactly.
+
 ## Required Workflow
 
 ### 1. Identify the surface
@@ -42,8 +62,8 @@ For `web/` tasks:
 
 ### 2. Read the correct references before editing
 
-- Read the relevant design spec first.
-- Then read the matching design rules file.
+- Read the relevant design spec first. Treat it as editable project guidance, not a locked canonical document.
+- Then read the matching design rules file. Treat rules as mandatory.
 - If the task involves compliance or review, inspect the matching guard script.
 
 ### 3. Follow the correct token system
@@ -89,11 +109,19 @@ bash scripts/run_design_guards.sh both staged
 
 If the target project is not the current git root, set `NEXT_LEVEL_UI_SPEC_PROJECT_ROOT=/abs/path/to/project`.
 
+If the target project uses custom spec files, optionally set:
+
+```bash
+export NEXT_LEVEL_UI_SPEC_MOBILE_SPEC_PATH=/abs/path/to/mobile-spec.md
+export NEXT_LEVEL_UI_SPEC_WEB_SPEC_PATH=/abs/path/to/web-spec.md
+```
+
 ## Output Expectations
 
 When using this skill:
 
 - say whether the task is `mobile`, `web`, or `both`
 - cite the exact spec/rules files used
+- state whether the spec came from the bundled example, a project-local default spec, or a custom spec path
 - name the token families or semantic classes you are following
 - call out missing tokens instead of inventing values
